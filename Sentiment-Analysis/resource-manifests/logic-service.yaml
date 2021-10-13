@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2021-10-13T22:53:30Z"
+  labels:
+    app: logic
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":80,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: GoogleCloudConsole
+    operation: Update
+    time: "2021-10-13T22:53:30Z"
+  name: logic-service
+  namespace: default
+  resourceVersion: "9658"
+  uid: 2c31b1e6-1093-408a-93ed-6fd57c33b280
+spec:
+  clusterIP: 10.84.9.239
+  clusterIPs:
+  - 10.84.9.239
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32342
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: logic
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
