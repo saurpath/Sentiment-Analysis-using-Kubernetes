@@ -185,5 +185,6 @@ The application takes one sentence as input and using Text Analysis, calculates 
       - image: gcr.io/extracredit-project1/saurpath/sentiment-analysis-frontend@sha256:ca69bd33e3b8b0f3d6c8d1e55cdf584b18c250ee520a029751e1169cced3c445
     ```
 
-## That's it! Navigate to the IP address pointed by the frontend-lb to use the Application.
+## That's it! 
+Navigate to the IP address pointed by the frontend-lb to use the Application.
 
