@@ -194,5 +194,5 @@ Frontend load-balancer IP address: http://http://34.135.254.171:80
 
 Application Output:
 
-![Application screenshot](/Sentiment-Analysis/Images/Application-Output.png)
+![Application screenshot](/Sentiment-Analysis/Images/Output.gif)
 
