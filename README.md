@@ -193,7 +193,7 @@ The application takes one sentence as input and using Text Analysis, calculates 
 ## That's it! 
 Navigate to the IP address pointed by the frontend-lb to use the Application.
 
-Frontend load-balancer IP address: http://http://34.135.254.171:80
+Frontend load-balancer IP address: http://34.135.254.171:80
 
 ![IP address screenshot](/Sentiment-Analysis/Images/Cluster-IP-address.png)
 
