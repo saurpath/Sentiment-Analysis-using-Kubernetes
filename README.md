@@ -3,6 +3,8 @@
 
 ### Summary
 The application takes one sentence as input and using Text Analysis, calculates the emotion of the sentence.
+[Application overview](/Sentiment-Analysis/Images/Overview.gif)
+
 ### Steps Required:
 - Building container images for each service of the Microservice application.
 - Deploy the images to DockerHub.
