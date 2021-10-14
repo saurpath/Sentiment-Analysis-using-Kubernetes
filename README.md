@@ -79,6 +79,7 @@ The application takes one sentence as input and using Text Analysis, calculates 
     c. Click Create.
 3. **This would deploy a standard cluster of 3 pods.**
 4. **Deploy the containers:**
+    
     a. Frontend
     + Click Deploy
     + Choose the frontend image gcr.io/extracredit-project1/saurpath/sentiment-analysis-frontend
@@ -132,23 +133,25 @@ The application takes one sentence as input and using Text Analysis, calculates 
           protocol: TCP
     ```
 
-5. **Create load balancers for Frontend and WebApps:**
-    a. Click on frontend pod -> Actions -> Expose.
-    b. Set name as frontend-lb.
-    c. Map the port 80 (public) to Target port (container) 80.
-    d. Choose Service type as Load balancers and click Expose.
-    e. Repeat for webapp pod with name as webapp-lb and target port as 8080.
+6. **Create load balancers for Frontend and WebApps:**
+    * Click on frontend pod -> Actions -> Expose.
+    * Set name as frontend-lb.
+    * Map the port 80 (public) to Target port (container) 80.
+    * Choose Service type as Load balancers and click Expose.
+    * Repeat for webapp pod with name as webapp-lb and target port as 8080.
 
-6. **Expose the logic pod as a service**
-    a. Click on logic pod -> Actions -> Expose.
-    b. Set name as logic-service. This is where kube-dns will route the requests from the webapp to.
-    c. Map the port 80 to Target port 5000.
-    d. Choose Service type as Node Port and click Expose. 
+7. **Expose the logic pod as a service**
+    
+    * Click on logic pod -> Actions -> Expose.
+    * Set name as logic-service. This is where kube-dns will route the requests from the webapp to.
+    * Map the port 80 to Target port 5000.
+    * Choose Service type as Node Port and click Expose. 
 
-7. **Route the requests from frontend to webapp pod.**
-    a. Get the IP address of the webapp load-balancer from KE -> Services & Ingress.
-    b. In our case, it is http://35.225.133.13:80.
-    c. Edit the App.js file locally at Sentiment-Analysis/sa-frontend/src/
+8. **Route the requests from frontend to webapp pod.**
+    * Get the IP address of the webapp load-balancer from KE -> Services & Ingress.
+    * In our case, it is http://35.225.133.13:80.
+    * Edit the App.js file locally at Sentiment-Analysis/sa-frontend/src/
+    
     ```ruby
      analyzeSentence() {
         fetch('http://35.225.133.13:80/sentiment', {
@@ -162,28 +165,34 @@ The application takes one sentence as input and using Text Analysis, calculates 
             .then(data => this.setState(data));
     }
     ```
-    d. Build the dockerfile again with the updated changes and tag it as minikube.
+    
+    * Build the dockerfile again with the updated changes and tag it as minikube.
     ```ruby
     docker build -f Dockerfile -t $DOCKER_USER_ID/sentiment-analysis-frontend:minikube .
     ```
-    e. Push the updated image to DockerHub.
+    
+    * Push the updated image to DockerHub.
     ```ruby
     docker push $DOCKER_USER_ID/sentiment-analysis-frontend:minikube
     ```
-    f. Fetch the image from Docker Hub.
+    
+    * Fetch the image from Docker Hub.
     ```ruby
     docker pull saurpath/sentiment-analysis-frontend:minikube
     ```
-    g. Tag and push the image to Google Container Registry.
+    
+    * Tag and push the image to Google Container Registry.
     ```ruby
     docker tag saurpath/sentiment-analysis-frontend:minikube gcr.io/extracredit-project1/saurpath/sentiment-analysis-frontend:minikube
     docker push gcr.io/extracredit-project1/saurpath/sentiment-analysis-frontend:minikube
     ```
-    h. Copy the update image name from Google container registry.
+    
+    * Copy the update image name from Google container registry.
     ```ruby
     gcr.io/extracredit-project1/saurpath/sentiment-analysis-frontend@sha256:ca69bd33e3b8b0f3d6c8d1e55cdf584b18c250ee520a029751e1169cced3c445
     ```
-    i. Update the webapp pod to use the new image by editing the YAML file.
+    
+    * Update the webapp pod to use the new image by editing the YAML file.
     ```ruby
     spec:
       containers:
